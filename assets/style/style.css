@@ -40,7 +40,12 @@ main section{
     color: white;
     font-weight: bold;
 }
-
+.cur{
+    position: relative;
+    top: 3px;
+    align-items: center;
+    color: #ffffff;
+}
 
 .option-spacing{
     display: flex;
