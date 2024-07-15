@@ -102,7 +102,7 @@ main section{
 }
 
 .cur{
-    padding: ;
+    padding: 2px;
     top: 3px;
     
     color: #ffffff;
@@ -148,6 +148,12 @@ ul {
     display: flex;
     gap: 20px;
     
+}
+#convertButton{
+    background-color: #000000;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
 }
 
 .btn {
