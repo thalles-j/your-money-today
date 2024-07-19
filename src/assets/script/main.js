@@ -1,45 +1,21 @@
+import { renderChart } from './grafico.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const seletorMoeda = document.getElementById("coin");
     const inputValor = document.getElementById("valor");
     const result = document.getElementById("result");
     const selectSpan = document.getElementById("selectSpan");
-    const graficoCanvas = document.getElementById("grafico");
 
     const fetchExchangeRates = async () => {
         try {
             const response = await fetch('/exchange-rates'); // Endpoint para buscar taxas de câmbio
             const rates = await response.json();
+            console.log('Taxas de câmbio:', rates); // Debugging log
             return rates;
         } catch (error) {
             console.error('Erro ao buscar as taxas de câmbio:', error);
             alert('Erro ao buscar as taxas de câmbio. Tente novamente mais tarde.');
             return null;
-        }
-    };
-
-    const renderChart = (currency, data) => {
-        if (graficoCanvas.getContext('2d')) {
-            new Chart(graficoCanvas, {
-                type: 'bar',
-                data: {
-                    labels: ['Compra', 'Venda'],
-                    datasets: [{
-                        label: `Taxa de Câmbio (${currency.toUpperCase()})`,
-                        data: data[currency],
-                        backgroundColor: ['#007bff', '#28a745'],
-                        borderColor: ['#007bff', '#28a745'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
         }
     };
 
@@ -58,25 +34,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const rates = await fetchExchangeRates();
         if (rates) {
             selectSpan.textContent = currency.toUpperCase();
-            const data = {
-                'USD': [rates['USD'], rates['USD']],
-                'EUR': [rates['EUR'], rates['EUR']],
-                'AOA': [rates['AOA'], rates['AOA']],
-                'ARS': [rates['ARS'], rates['ARS']]
-            };
+            const rate = rates[currency];
+            updateConversion(currency, rate);
+            const data = [rate, rate]; // Usando o mesmo valor para compra e venda como exemplo
+            console.log('Renderizando gráfico com dados:', { currency, data }); // Debugging log
             renderChart(currency, data);
-            updateConversion(currency, rates[currency]);
         }
     });
 
-    inputValor.addEventListener('input', () => {
+    document.getElementById("convertButton").addEventListener('click', async function() {
         const currency = seletorMoeda.value;
-        const rates = fetchExchangeRates();
+        const rates = await fetchExchangeRates();
         if (rates) {
-            updateConversion(currency, rates[currency]);
+            const rate = rates[currency];
+            updateConversion(currency, rate);
         }
     });
 
-    // Inicializa o gráfico com a moeda padrão
+    // Inicializa com a moeda padrão
     seletorMoeda.dispatchEvent(new Event('change'));
 });
+
+
