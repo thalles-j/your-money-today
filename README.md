@@ -1,8 +1,10 @@
-Projeto "YOUR MONEY TODAY"
+Project "YOUR MONEY TODAY"
 <br>
-O projeto "YOUR MONEY TODAY" visa explorar e aprender mais sobre JavaScript, focando na criação de uma aplicação web que exiba as taxas de câmbio atualizadas do dólar, euro, kwanza angolano e peso argentino em relação ao real brasileiro (BRL). 
-Para isso, estamos desenvolvendo uma API utilizando Node.js e Express.js para buscar essas taxas de câmbio em tempo real.
-Este projeto não apenas visa a implementação técnica da API, mas também o aprendizado contínuo sobre JavaScript, APIs RESTful e integração de serviços web em aplicações modernas.
+The "YOUR MONEY TODAY" project aims to explore and learn more about JavaScript, focusing on creating a web application that displays updated exchange rates for the US Dollar, Euro, Angolan Kwanza, and Argentine Peso in relation to the Brazilian Real (BRL).
+
+To achieve this, we are developing an API using Node.js and Express.js to fetch these exchange rates in real-time.
+
+This project is not only about the technical implementation of the API but also about continuous learning of JavaScript, RESTful APIs, and integrating web services into modern applications.
 
 
 
